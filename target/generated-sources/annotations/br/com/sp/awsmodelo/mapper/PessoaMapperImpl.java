@@ -1,0 +1,49 @@
+package br.com.sp.awsmodelo.mapper;
+
+import br.com.sp.awsmodelo.dto.PessoaDTO;
+import br.com.sp.awsmodelo.entity.PessoaEntity;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
+
+@Generated(
+    value = "org.mapstruct.ap.MappingProcessor",
+    date = "2026-11-05T22:00:58-0300",
+    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.46.200.v20261008-1115, environment: Java 25.0.4.1 (Eclipse Adoptium)"
+)
+@Component
+public class PessoaMapperImpl implements PessoaMapper {
+
+    @Override
+    public PessoaDTO toDto(PessoaEntity entity) {
+        if ( entity == null ) {
+            return null;
+        }
+
+        String nome = null;
+        LocalDate dataNascimento = null;
+
+        nome = entity.getNome();
+        dataNascimento = entity.getDataNascimento();
+
+        PessoaDTO pessoaDTO = new PessoaDTO( nome, dataNascimento );
+
+        return pessoaDTO;
+    }
+
+    @Override
+    public List<PessoaDTO> toDtoList(List<PessoaEntity> entities) {
+        if ( entities == null ) {
+            return null;
+        }
+
+        List<PessoaDTO> list = new ArrayList<PessoaDTO>( entities.size() );
+        for ( PessoaEntity pessoaEntity : entities ) {
+            list.add( toDto( pessoaEntity ) );
+        }
+
+        return list;
+    }
+}
